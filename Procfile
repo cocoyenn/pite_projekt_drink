@@ -1,1 +1,1 @@
-web: gunicorn deepdrink.wsgi --log-file -
+web: gunicorn djangoFiles.wsgi --log-file -
