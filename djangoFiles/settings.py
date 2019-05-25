@@ -25,7 +25,7 @@ SECRET_KEY = 'tzd0i^4mq(9tl_zwqw)yzh_^mu@*4tc#j(_%2^hu@vyjpvdvc&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['drink-advisor.herokuapp.com']
 
 
 # Application definition
