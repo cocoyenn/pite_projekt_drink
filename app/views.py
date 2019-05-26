@@ -28,14 +28,15 @@ def about(request):
         'app_name': app_name
     }
     return render(request, 'app/about.html', context)
-# @login_required
-# def special(request):
-#     return HttpResponse("You are logged in !")
 
-# @login_required
-# def user_logout(request):
-#     logout(request)
-#     return HttpResponseRedirect(reverse('index'))
+@login_required
+def special(request):
+    return HttpResponse("You are logged in !")
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('app-home'))
 
 def register(request):
     registered = False
@@ -66,7 +67,7 @@ def register(request):
                 'registered':registered}
     return render(request,'app/register.html',context)
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -74,7 +75,7 @@ def login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('app-home'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
