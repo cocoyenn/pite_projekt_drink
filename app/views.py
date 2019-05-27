@@ -11,7 +11,6 @@ settings = {
 
 app_name = 'Drink Advisor'
 
-
 def home(request):
     context = {
         'settings': settings,
@@ -29,16 +28,7 @@ def about(request):
     }
     return render(request, 'app/about.html', context)
 
-@login_required
-def special(request):
-    return HttpResponse("You are logged in !")
-
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('app-home'))
-
-def register(request):
+def user_register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -59,6 +49,7 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
+
     context = { 'settings': settings,
                 'title': 'Login',
                 'app_name': app_name,
@@ -89,3 +80,8 @@ def user_login(request):
         'app_name': app_name
         }
         return render(request, 'app/login.html', context)
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('app-home'))
