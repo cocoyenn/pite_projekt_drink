@@ -1,0 +1,18 @@
+{% extends "app/base.html" %}
+
+{% block left-content %}
+    <h1>Login</h1>
+{% endblock left-content %}
+{% block right-content %}
+  <form method="POST", action="{% url 'app-login' %}">
+      {% csrf_token %}
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Username" name="username" required>
+    </br>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Password" name="password" required>
+    </br>
+    <button type="submit" name="" value="Login" action=>Login</button>
+ </form>
+
+{% endblock right-content %}

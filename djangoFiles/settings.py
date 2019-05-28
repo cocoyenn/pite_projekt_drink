@@ -25,7 +25,7 @@ SECRET_KEY = 'tzd0i^4mq(9tl_zwqw)yzh_^mu@*4tc#j(_%2^hu@vyjpvdvc&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['drink-advisor.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -122,4 +122,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'profile_pics'),
 )
