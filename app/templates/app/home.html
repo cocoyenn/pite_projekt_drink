@@ -1,9 +1,53 @@
 {% extends "app/base.html" %}
 
-{% block left-content %}
-    <h1>Left site</h1>
-{% endblock left-content %}
+{% block main-content %}
+<!-- Left content -->
 
-{% block right-content %}
-    <h1>Right site</h1>
-{% endblock right-content %}
+    <div class="col-md-6 mySection myLeft">
+        <h5 class="text-white">Select your ingredients and compose your drink!</h5>
+
+        <div class="row drinkPanel">
+
+            <div class="col-md-9 ingredientsPanel">
+                <select class="browser-default custom-select mySelect">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <button type="button" class="btn btn-outline-primary">+</button>
+                <p>Ingredient...
+                <button type="button" class="btn">-</button>
+                </p>
+                <p>Ingredient...
+                <button type="button" class="btn">-</button>
+                </p>
+            </div>
+
+            <div class="col-md-3 buttonsPanel">
+                <button type="button" class="btn btn-success myButton">MAKE</button>
+                <button type="button" class="btn btn-success myButton">RESET</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Break content -->
+    <div class="col-md-2 myPause"></div>
+
+
+<!-- Right content -->
+<div class="col-md-4 mySection myRight">
+
+    <div class="aboutSection">
+    <h6 class="text-white">Its an application for helping you make the best possible drink from
+    the ingredients you have!</h6>
+    <button type="button" class="btn btn-warning">Learn more</button>
+        </div>
+
+    <div class="popularSection">
+    <h3 class="text-white">Most Popular Drinks</h3>
+        </div>
+
+</div>
+{% endblock main-content %}
+

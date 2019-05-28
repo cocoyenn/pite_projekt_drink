@@ -28,7 +28,7 @@
           <!-- Navigation -->
           <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
-              <a class="navbar-brand js-scroll-trigger" href="#page-top">{{ app_name }}</a>
+              <a class="navbar-brand js-scroll-trigger" href="{% url 'app-home' %}">{{ app_name }}</a>
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -53,14 +53,8 @@
           <section class="page-section mainContent" id="about">
             <div class="container">
               <div class="modal-body row">
-                  <div class="col-md-6">
-                    {% block left-content %}
+                    {% block main-content %}
                       {% endblock %}
-                  </div>
-                  <div class="col-md-6">
-                    {% block right-content %}
-                      {% endblock %}
-                  </div>
               </div>
             </div>
           </section>
