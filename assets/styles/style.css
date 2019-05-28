@@ -1,3 +1,65 @@
 .mainContent {
     background: #b7d5ef;
+    height: 100%;
+}
+
+.mySection {
+}
+
+.myLeft {
+    background: #b7d5ef;
+}
+
+.myRight {
+    background: #b7d5ef;
+}
+
+.drinkPanel {
+    background: #86cfda;
+    border-radius: 5px;
+    min-height: 300px;
+    padding: 20px;
+}
+
+.ingredientsPanel {
+    background: #86cfda;
+}
+
+.buttonsPanel {
+    background: #86cfda;
+}
+
+.mySelect {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.myButton {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    background: #4d7780;
+}
+
+.myPause {
+    background: #b7d5ef;
+}
+
+.myIngredient {
+    margin-top: 10px;
+    margin-right: 0px;
+    width: 70%;
+}
+
+.aboutSection {
+    background: #86cfda;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 35px;
+}
+
+.popularSection {
+    background: #86cfda;
+    border-radius: 5px;
+    padding: 20px;
 }
