@@ -1,18 +1,18 @@
 {% extends "app/base.html" %}
 
-
-    <h1>Login</h1>
-
 {% block main-content %}
+<div class="col-md-4 myLeft mySection roundedPanel">
+    <h3 class="text-white">Login</h3>
   <form method="POST", action="{% url 'app-login' %}">
       {% csrf_token %}
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Username" name="username" required>
+    <input type="text" class="form-control" placeholder="Username" name="username" required>
     </br>
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="password" required>
+    <input type="password" class="form-control" placeholder="Password" name="password" required>
     </br>
-    <button type="submit" name="" value="Login" action=>Login</button>
+    <button class="btn btn-warning" type="submit" name="" value="Login" action=>Login</button>
  </form>
+</div>
 
 {% endblock main-content %}

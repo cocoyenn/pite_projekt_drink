@@ -37,9 +37,12 @@
                     {# Some logic on what to display for last item#}
                     {% if user.is_authenticated %}
                     <li><a> Logged as {{user.first_name}}</a></li>
-                      <li><a href="{% url 'app-logout' %}">Logout</a></li>
+                      <li>
+                          <a href="{% url 'app-logout' %}">Logout</a>
+                      </li>
                     {% else %}
-                      <li><a class="navbar-link" href="{% url 'app-login' %}">Login</a></li>
+                      <li class="nav-item">
+                          <a class="nav-link js-scroll-trigger" href="{% url 'app-login' %}">Login</a></li>
                       <li class="nav-item">
                           <a class="nav-link js-scroll-trigger" href="{% url 'app-register' %}">Sign up</a>
                       </li>
