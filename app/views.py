@@ -28,6 +28,26 @@ def about(request):
     }
     return render(request, 'app/about.html', context)
 
+
+def makeDrink(request):
+
+    ingredientList = []
+
+    for elementId, ingredient in request.POST.items():
+        ingredientList.append(str(ingredient))
+
+    ingredientList.pop(0)
+
+    ###
+    #INSERT MACHINE LEARNING MAGIC HERE
+
+    context = {
+        'settings': settings,
+        'title': 'Drink maked!',
+        'app_name': app_name,
+    }
+    return render(request, 'app/home.html', context)
+
 def user_register(request):
     registered = False
     if request.method == 'POST':
