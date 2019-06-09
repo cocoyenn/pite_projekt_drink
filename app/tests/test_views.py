@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from django.shortcuts import render
@@ -21,30 +22,53 @@ class ViewsTest(TestCase):
 
         self.assertEqual(resp.status_code, 200)
 
+    def test_makeDrink_coconut(self):
+        url = reverse("app-makeDrink")
+        resp = self.client.post(url, data={"ingredient1": "coconut"})
 
-    def test_user_register(self):
+        self.assertEqual(resp.status_code, 200)
+
+    def test_user_register_get(self):
         url = reverse("app-register")
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
 
+    def test_user_register_post_valid(self):
+        url = reverse("app-register")
+        resp = self.client.post(url, data={"username": "Lukaszek", "password": "ala"})
 
-    def test_user_login(self):
+        self.assertEqual(resp.status_code, 200)
+
+    def test_user_register_post_invalid(self):
+        url = reverse("app-register")
+        resp = self.client.post(url, data={"password": "ala"})
+
+        self.assertEqual(resp.status_code, 200)
+
+    def test_user_login_get(self):
         url = reverse("app-login")
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
 
-
-    def test_makeDrink(self):
-        url = reverse("app-makeDrink")
-        resp = self.client.get(url)
+    def test_user_login_post_invalid(self):
+        url = reverse("app-login")
+        resp = self.client.post(url, data={"username": "Ala", "password": "lol"})
 
         self.assertEqual(resp.status_code, 200)
 
+    def test_user_login_post_valid(self):
+        User.objects.create_user(username='Ala', password='lol')
+        url = reverse("app-login")
+        resp = self.client.post(url, data={"username": "Ala", "password": "lol"})
+
+        self.assertEqual(resp.status_code, 302)
 
     def test_user_logout(self):
+        User.objects.create_user(username='Ala', password='lol')
+        self.client.login(username='Ala', password='lol')
         url = reverse("app-logout")
         resp = self.client.get(url)
 
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 302)
