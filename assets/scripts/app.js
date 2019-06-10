@@ -1,8 +1,8 @@
 var ingredientCounter = 0;
 
-function addIngredient() {
-    selectInput = document.getElementById('selectIngredient');
-    ingredientList = document.getElementById('IngredientList');
+function addIngredient(ingredientCategory) {
+    selectInput = document.getElementById(ingredientCategory);
+    ingredientList = document.getElementById('picked_' + ingredientCategory);
     newIngredient = selectInput.options[selectInput.selectedIndex].value;
 
     ingredientList.innerHTML += "<input type='hidden' name='ingredientId_" + ingredientCounter + "' value='" + newIngredient + "' /><p id='ingredientId_" + ingredientCounter + "'>" + newIngredient + "<button type=\"button\" class=\"btn btn-warning\" onclick=\"removeIngredient('ingredientId_" + ingredientCounter + "')\">-</button></p>";
@@ -26,8 +26,28 @@ function removeIngredient(ingredient) {
 }
 
 function resetIngredientList() {
-    selectInput = document.getElementById('selectIngredient');
+    selectInput = document.getElementById('selectAlcoholicIngredient');
     selectInput.selectedIndex = "0";
-    ingredientList = document.getElementById('IngredientList');
+    ingredientList = document.getElementById('picked_selectAlcoholicIngredient');
+    ingredientList.innerHTML = "";
+
+    selectInput = document.getElementById('selectNonAlcoholicIngredient');
+    selectInput.selectedIndex = "0";
+    ingredientList = document.getElementById('picked_selectNonAlcoholicIngredient');
+    ingredientList.innerHTML = "";
+
+    selectInput = document.getElementById('selectFruitIngredient');
+    selectInput.selectedIndex = "0";
+    ingredientList = document.getElementById('picked_selectFruitIngredient');
+    ingredientList.innerHTML = "";
+
+    selectInput = document.getElementById('selectOtherIngredient');
+    selectInput.selectedIndex = "0";
+    ingredientList = document.getElementById('picked_selectOtherIngredient');
+    ingredientList.innerHTML = "";
+
+    selectInput = document.getElementById('selectGlassIngredient');
+    selectInput.selectedIndex = "0";
+    ingredientList = document.getElementById('picked_selectGlassIngredient');
     ingredientList.innerHTML = "";
 }

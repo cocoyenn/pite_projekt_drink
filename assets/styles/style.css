@@ -20,7 +20,6 @@
 
 .roundedPanel {
     border-radius: 5px;
-    min-height: 300px;
     padding: 20px;
 }
 
@@ -75,4 +74,9 @@
 
 .centeredText {
     text-align: center;
+}
+
+.smallerButton {
+    width: 20px;
+    height: 20px;
 }

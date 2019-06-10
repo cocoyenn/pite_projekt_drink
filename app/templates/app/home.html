@@ -9,14 +9,51 @@
         <div class="row roundedPanel mySection">
 
             <div class="col-md-9 ingredientsPanel">
-                <select class="browser-default custom-select mySelect" id="selectIngredient">
-                        <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="browser-default custom-select mySelect" id="selectAlcoholicIngredient">
+                        <optgroup label="ALCOHOLIC">
 
+                            {% for key in ingredients %}
+                            <option> {{ key }} </option>
+                            {% endfor %}
+
+                            </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient()">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectAlcoholicIngredient')">+</button>
+                <p id="picked_selectAlcoholicIngredient"></p>
+
+
+                <select class="browser-default custom-select mySelect" id="selectNonAlcoholicIngredient">
+                        <optgroup label="NON-ALCOHOLIC">
+                            <option selected>NON-ALCOHOLIC</option>
+                        </optgroup>
+                </select>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectNonAlcoholicIngredient')">+</button>
+                <p id="picked_selectNonAlcoholicIngredient"></p>
+
+                <select class="browser-default custom-select mySelect" id="selectFruitIngredient">
+                        <optgroup label="ALCOHOLIC">
+                            <option selected>FRUIT</option>
+                        </optgroup>
+                </select>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectFruitIngredient')">+</button>
+                <p id="picked_selectFruitIngredient"></p>
+
+
+                <select class="browser-default custom-select mySelect" id="selectOtherIngredient">
+                        <optgroup label="ALCOHOLIC">
+                            <option selected>OTHER</option>
+                        </optgroup>
+                </select>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectOtherIngredient')">+</button>
+                <p id="picked_selectOtherIngredient"></p>
+
+                <select class="browser-default custom-select mySelect" id="selectGlassIngredient">
+                        <optgroup label="ALCOHOLIC">
+                            <option selected>GLASS</option>
+                        </optgroup>
+                </select>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectGlassIngredient')">+</button>
+                <p id="picked_selectGlassIngredient"></p>
 
                 <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
                     {% csrf_token %}
@@ -45,13 +82,13 @@
 <!-- Right content -->
 <div class="col-md-4 myRight">
 
-    <div class="aboutSection mySection">
+    <div class="aboutSection mySection roundedPanel">
     <h6 class="text-white">Its an application for helping you make the best possible drink from
     the ingredients you have!</h6>
     <button type="button" class="btn btn-warning">Learn more</button>
         </div>
 
-    <div class="popularSection mySection">
+    <div class="popularSection mySection roundedPanel">
     <h3 class="text-white">Most Popular Drinks</h3>
         </div>
 
