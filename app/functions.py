@@ -54,7 +54,7 @@ def generate_drinks(ingredient_list):
         model = pickle.load(file)
     
     
-    results = model.wv.most_similar(positive = ingredients)
+    results = model.wv.most_similar(positive = ingredients.lower)
     
     output  = dict(drink1:results[0], drink2:results[1])
     
