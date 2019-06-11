@@ -46,8 +46,16 @@ def prepare_ingredients_list(request):
 
 
 def generate_drinks(ingredient_list):
-    drinks = {}
-
-    # MACHINE LEARNING MAGIC HERE
-
-    return drinks
+    import pickle
+    from gensim.models import Word2Vec
+    
+    
+    with open('ml_model/model', 'rb') as file:
+        model = pickle.load(file)
+    
+    
+    results = model.wv.most_similar(positive = ingredients)
+    
+    output  = dict(drink1:results[0], drink2:results[1])
+    
+    return output
