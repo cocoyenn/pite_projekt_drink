@@ -5,44 +5,16 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-import csv
+from .functions import *
 
 
 def home(request):
     context = {
         'title': 'Home',
-        'app_name': settings.APP_NAME
+        'app_name': settings.APP_NAME,
+        'ingredients': get_ingredients_list()
     }
-
-    ingredients = {
-        'alkoholic': [],
-        'non-alcoholic': [],
-        'frutis': [],
-        'other': [],
-        'glass': []
-    }
-
-    with open('assets/lists/alcoholic_list.txt', 'r') as f:
-        reader = csv.reader(f)
-        ingredients['alkoholic'] = list(reader)
-
-    with open('assets/lists/non-alcoholic_list.txt', 'r') as f:
-        reader = csv.reader(f)
-        ingredients['non-alkoholic'] = list(reader)
-
-    with open('assets/lists/fruit_list.txt', 'r') as f:
-        reader = csv.reader(f)
-        ingredients['fruits'] = list(reader)
-
-    with open('assets/lists/other_list.txt', 'r') as f:
-        reader = csv.reader(f)
-        ingredients['other'] = list(reader)
-
-    with open('assets/lists/glass_type_list.txt', 'r') as f:
-        reader = csv.reader(f)
-        ingredients['glass'] = list(reader)
-
-    return render(request, 'app/home.html', context, ingredients)
+    return render(request, 'app/home.html', context)
 
 
 def about(request):
@@ -54,22 +26,15 @@ def about(request):
 
 
 def makeDrink(request):
-    ingredientList = []
-
-    for elementId, ingredient in request.POST.items():
-        ingredientList.append(str(ingredient))
-
-    ingredientList.pop(0)
-    print(ingredientList)
-
-    ###
-    # INSERT MACHINE LEARNING MAGIC HERE
 
     context = {
         'title': 'Drink maked!',
         'app_name': settings.APP_NAME,
+        'ingredient_list': prepare_ingredients_list(request),
     }
-    return render(request, 'app/home.html', context)
+    prepared_drinks = generate_drinks(context['ingredient_list'])
+
+    return render(request, 'app/drinkReady.html', context, prepared_drinks)
 
 
 def user_register(request):
@@ -95,7 +60,7 @@ def user_register(request):
 
     context = {'settings': settings,
                'title': 'Login',
-               'app_name': app_name,
+               'app_name': settings.APP_NAME,
                'user_form': user_form,
                'profile_form': profile_form,
                'registered': registered}
@@ -121,7 +86,7 @@ def user_login(request):
         context = {
             'settings': settings,
             'title': 'Login',
-            'app_name': app_name
+            'app_name': settings.APP_NAME
         }
         return render(request, 'app/login.html', context)
 

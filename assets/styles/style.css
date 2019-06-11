@@ -1,13 +1,11 @@
 .mainContent {
     background: url("../images/background2.jpg");
-    background-size: cover;
-    height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .mySection {
-    background: rgba(218, 172, 73, 0.76);
+    background: rgba(218, 172, 73, 0.31);
 }
 
 .myLeft {
