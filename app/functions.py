@@ -85,7 +85,7 @@ def generate_drinks(ingredient_list):
     
     if len(indexes) > 1:
         output = dict(ingredient1:results[0], ingredient2:results[1], drink1_name:ser2[indexes[0]],
-                        drink1:ser3[indexes[0]+1], drink2_name:nan, drink2:nan)
+                        drink1:ser3[indexes[0]+1], drink2_name:'NaN', drink2:'NaN')
     else:
         found_indx = random.sample(indexes, 2)
         output = dict(ingredient1:results[0], ingredient2:results[1], drink1_name:ser2[indexes[0]],
