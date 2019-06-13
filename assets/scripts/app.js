@@ -5,7 +5,7 @@ function addIngredient(ingredientCategory) {
     ingredientList = document.getElementById('picked_' + ingredientCategory);
     newIngredient = selectInput.options[selectInput.selectedIndex].value;
 
-    ingredientList.innerHTML += "<input type='hidden' name='ingredientId_" + ingredientCounter + "' value='" + newIngredient + "' /><p id='ingredientId_" + ingredientCounter + "'>" + newIngredient + "<button type=\"button\" class=\"btn btn-warning\" onclick=\"removeIngredient('ingredientId_" + ingredientCounter + "')\">-</button></p>";
+    ingredientList.innerHTML += "<input type='hidden' name='ingredientId_" + ingredientCounter + "' value='" + newIngredient + "' /><p class='text-white' id='ingredientId_" + ingredientCounter + "'>" + newIngredient + "<button type=\"button\" class=\"btn btn-warning minusButton\" onclick=\"removeIngredient('ingredientId_" + ingredientCounter + "')\">-</button></p>";
     ingredientCounter++;
 }
 

@@ -9,30 +9,35 @@
         <div class="row roundedPanel mySection">
 
             <div class="col-md-9 ingredientsPanel">
+                <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
+                    {% csrf_token %}
+                {% for a,b,c,d,e in ingredients %}
                 <select class="browser-default custom-select mySelect" id="selectAlcoholicIngredient">
-                        <optgroup label="ALCOHOLIC">
-
-                            {% for key in ingredients %}
-                            <option> {{ key }} </option>
+                        <optgroup label="ALCOHOLIC" selected>
+                            {% for alcoholic_ingredient in a %}
+                                    <option> {{ alcoholic_ingredient }} </option>
                             {% endfor %}
-
-                            </optgroup>
+                        </optgroup>
                 </select>
                 <button type="button" class="btn btn-warning" onclick="addIngredient('selectAlcoholicIngredient')">+</button>
                 <p id="picked_selectAlcoholicIngredient"></p>
 
 
                 <select class="browser-default custom-select mySelect" id="selectNonAlcoholicIngredient">
-                        <optgroup label="NON-ALCOHOLIC">
-                            <option selected>NON-ALCOHOLIC</option>
+                        <optgroup label="NON-ALCOHOLIC" selected>
+                            {% for non_alcoholic_ingredient in b %}
+                                    <option> {{ non_alcoholic_ingredient }} </option>
+                            {% endfor %}
                         </optgroup>
                 </select>
                 <button type="button" class="btn btn-warning" onclick="addIngredient('selectNonAlcoholicIngredient')">+</button>
                 <p id="picked_selectNonAlcoholicIngredient"></p>
 
                 <select class="browser-default custom-select mySelect" id="selectFruitIngredient">
-                        <optgroup label="ALCOHOLIC">
-                            <option selected>FRUIT</option>
+                        <optgroup label="FRUIT" selected>
+                            {% for fruit_ingredient in c %}
+                                    <option> {{ fruit_ingredient }} </option>
+                            {% endfor %}
                         </optgroup>
                 </select>
                 <button type="button" class="btn btn-warning" onclick="addIngredient('selectFruitIngredient')">+</button>
@@ -40,23 +45,25 @@
 
 
                 <select class="browser-default custom-select mySelect" id="selectOtherIngredient">
-                        <optgroup label="ALCOHOLIC">
-                            <option selected>OTHER</option>
+                        <optgroup label="OTHER" selected>
+                            {% for other_ingredient in d %}
+                                    <option> {{ other_ingredient }} </option>
+                            {% endfor %}
                         </optgroup>
                 </select>
                 <button type="button" class="btn btn-warning" onclick="addIngredient('selectOtherIngredient')">+</button>
                 <p id="picked_selectOtherIngredient"></p>
 
                 <select class="browser-default custom-select mySelect" id="selectGlassIngredient">
-                        <optgroup label="ALCOHOLIC">
-                            <option selected>GLASS</option>
+                        <optgroup label="GLASS" selected>
+                            {% for glass_ingredient in e %}
+                                    <option> {{ glass_ingredient }} </option>
+                            {% endfor %}
                         </optgroup>
                 </select>
                 <button type="button" class="btn btn-warning" onclick="addIngredient('selectGlassIngredient')">+</button>
                 <p id="picked_selectGlassIngredient"></p>
-
-                <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
-                    {% csrf_token %}
+{% endfor %}
                     <!-- Ingredients list will be generated here -->
                     <!-- tu od inputa zaczac -->
 

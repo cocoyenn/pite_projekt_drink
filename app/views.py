@@ -14,6 +14,7 @@ def home(request):
         'app_name': settings.APP_NAME,
         'ingredients': get_ingredients_list()
     }
+
     return render(request, 'app/home.html', context)
 
 
@@ -32,8 +33,8 @@ def makeDrink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
     }
-    prepared_drinks = generate_drinks(context['ingredient_list'])
 
+    prepared_drinks = generate_drinks(context['ingredient_list'])
     return render(request, 'app/drinkReady.html', context, prepared_drinks)
 
 
