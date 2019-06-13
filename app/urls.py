@@ -8,4 +8,6 @@ urlpatterns = [
     path('register/', views.user_register, name='app-register'),
     path('logout', views.user_logout, name='app-logout'),
     path('makeDrink/', views.makeDrink, name='app-makeDrink'),
+    path('profile/', views.profile_site, name='app-profile'),
+    path('profile_edition/', views.profile_edition, name='app-profile_edition'),
 ]
