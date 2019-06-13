@@ -14,7 +14,6 @@ def home(request):
         'app_name': settings.APP_NAME,
         'ingredients': get_ingredients_list()
     }
-
     return render(request, 'app/home.html', context)
 
 
@@ -33,8 +32,8 @@ def makeDrink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
     }
-
     prepared_drinks = generate_drinks(context['ingredient_list'])
+
     return render(request, 'app/drinkReady.html', context, prepared_drinks)
 
 
@@ -82,14 +81,20 @@ def user_login(request):
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username, password))
-            return HttpResponse("Invalid login details given")
+            context = {
+            'settings': settings,
+            'title': 'Login failed try again!',
+            'app_name': settings.APP_NAME,
+            'info':"Login failed try again!"
+        }
+        return render(request, 'app/login.html', context)
     else:
         context = {
             'settings': settings,
             'title': 'Login',
             'app_name': settings.APP_NAME
         }
-        return render(request, 'app/login.html', context)
+        return render(request, 'login.html', context)
 
 
 @login_required
