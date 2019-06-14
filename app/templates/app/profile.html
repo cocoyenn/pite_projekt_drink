@@ -18,7 +18,7 @@
                     {% load static %}
                     <img src="{{user.userprofileinfo.profile_pic.url}}" alt=""  >
                 {% else %}
-                    <img src="/media/default_profile_pics/58419383_596527057524243_2142643627879301120_n.png" alt=""  >
+                    <img src="{% static 'profile_pics/pic1.png' %}" alt=""  >
                 {% endif %}  
             {% endif %}  
         </div>

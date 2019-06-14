@@ -34,7 +34,7 @@ def make_drink(request):
     }
     prepared_drinks = get_deduced_ingredients(context['ingredient_list'])
     
-    return render(request, 'app/drinkReady.html', context, prepared_drinks)
+    return render(request, 'app/drink_ready.html', context, prepared_drinks)
 
 
 def user_register(request):

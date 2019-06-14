@@ -115,8 +115,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "djangoFiles/media")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
-    os.path.join(BASE_DIR, 'profile_pics'),
-    os.path.join(BASE_DIR, 'scripts')
 )
 
 if 'DATABASE_URL' in os.environ:
