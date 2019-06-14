@@ -1,25 +1,26 @@
 import csv
+import pandas as pd
 
 
 def get_ingredients_list():
 
-    with open('assets/lists/alcoholic_list.txt', 'r') as f:
+    with open('assets/lists/alcoholic_list.csv', 'r') as f:
         reader = csv.reader(f)
         alcoholic_ingredients_list = list(reader)
 
-    with open('assets/lists/non-alcoholic_list.txt', 'r') as f:
+    with open('assets/lists/non-alcoholic_list.csv', 'r') as f:
         reader = csv.reader(f)
         non_alcoholic_ingredients_list = list(reader)
 
-    with open('assets/lists/fruit_list.txt', 'r') as f:
+    with open('assets/lists/fruit_list.csv', 'r') as f:
         reader = csv.reader(f)
         fruits_ingredients_list = list(reader)
 
-    with open('assets/lists/other_list.txt', 'r') as f:
+    with open('assets/lists/other_list.csv', 'r') as f:
         reader = csv.reader(f)
         other_ingredients_list = list(reader)
 
-    with open('assets/lists/glass_type_list.txt', 'r') as f:
+    with open('assets/lists/glass_type_list.csv', 'r') as f:
         reader = csv.reader(f)
         glass_ingredients_list = list(reader)
 
@@ -40,6 +41,6 @@ def prepare_ingredients_list(request):
     return ingredient_list
 
 
-def generate_drinks(ingredient_list):
+def get_deduced_ingredients(ingredient_list):
 
     return ingredient_list
