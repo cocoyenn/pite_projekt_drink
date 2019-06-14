@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserForm, UserProfileInfoForm
+from .forms import UserForm, UserProfileInfoForm , EditUserForm, EditUserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -14,7 +14,6 @@ def home(request):
         'app_name': settings.APP_NAME,
         'ingredients': get_ingredients_list()
     }
-
     return render(request, 'app/home.html', context)
 
 
@@ -33,8 +32,8 @@ def make_drink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
     }
-
     prepared_drinks = get_deduced_ingredients(context['ingredient_list'])
+    
     return render(request, 'app/drinkReady.html', context, prepared_drinks)
 
 
@@ -82,7 +81,13 @@ def user_login(request):
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username, password))
-            return HttpResponse("Invalid login details given")
+            context = {
+            'settings': settings,
+            'title': 'Login failed try again!',
+            'app_name': settings.APP_NAME,
+            'info':"Login failed try again!"
+        }
+        return render(request, 'app/login.html', context)
     else:
         context = {
             'settings': settings,
@@ -96,3 +101,41 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('app-home'))
+
+
+def profile_site(request):
+    context = {
+       'settings': settings,
+        'title': 'Login failed try again!',
+        'app_name': settings.APP_NAME,
+        'info':"Login failed try again!"
+    }
+    return render(request, 'app/profile.html', context)
+
+def profile_edition(request):
+    edited = False
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = UserProfileInfoForm(request.POST, instance=request.user)
+        if user_form.is_valid() and profile_form.is_valid():
+            request.user = user_form.save()
+            request.user.save()
+            request.profile = profile_form.save(commit=False)
+            request.profile.user = request.user
+            if 'profile_pic' in request.FILES:
+                request.profile.profile_pic = request.FILES['profile_pic']
+            request.profile.save()
+            edited = True
+            return HttpResponseRedirect(reverse('app-profile'))
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditUserProfileInfoForm(instance=request.user)
+    context = {
+        'settings': settings,
+        'title': 'Edit',
+        'app_name': settings.APP_NAME,
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'edited': edited
+        }
+    return render(request,'app/profile_edition.html', context)

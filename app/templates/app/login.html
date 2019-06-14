@@ -2,7 +2,8 @@
 
 {% block main-content %}
 <div class="col-md-4 myLeft mySection roundedPanel">
-    <h3 class="text-white">Login</h3>
+    <h3 class="text-white">{{title}}</h3>
+   
   <form method="POST", action="{% url 'app-login' %}">
       {% csrf_token %}
     <label for="username"><b>Username</b></label>
@@ -12,7 +13,7 @@
     <input type="password" class="form-control" placeholder="Password" name="password" required>
     </br>
     <button class="btn btn-warning" type="submit" name="" value="Login" action=>Login</button>
- </form>
+ </form>           
 </div>
 
 {% endblock main-content %}
