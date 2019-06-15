@@ -3,101 +3,106 @@
 {% block main-content %}
 <!-- Left content -->
 
-    <div class="col-md-6 myLeft">
-        <h5 class="text-white">Select your ingredients and compose your drink!</h5>
+<div class="col-md-6 myLeft">
+    <h5 class="text-white">Select your ingredients and compose your drink!</h5>
 
-        <div class="row roundedPanel mySection">
+    <div class="row roundedPanel mySection">
 
-            <div class="col-md-9 ingredientsPanel">
-                <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
-                    {% csrf_token %}
+        <div class="col-md-9 ingredientsPanel">
+            <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
+                {% csrf_token %}
                 {% for a,b,c,d,e in ingredients %}
                 <select class="browser-default custom-select mySelect" id="selectAlcoholicIngredient">
-                        <optgroup label="ALCOHOLIC" selected>
-                            {% for alcoholic_ingredient in a %}
-                                    <option> {{ alcoholic_ingredient }} </option>
-                            {% endfor %}
-                        </optgroup>
+                    <optgroup label="ALCOHOLIC" selected>
+                        {% for alcoholic_ingredient in a %}
+                        <option> {{ alcoholic_ingredient }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectAlcoholicIngredient')">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectAlcoholicIngredient')">+
+                </button>
                 <p id="picked_selectAlcoholicIngredient"></p>
 
 
                 <select class="browser-default custom-select mySelect" id="selectNonAlcoholicIngredient">
-                        <optgroup label="NON-ALCOHOLIC" selected>
-                            {% for non_alcoholic_ingredient in b %}
-                                    <option> {{ non_alcoholic_ingredient }} </option>
-                            {% endfor %}
-                        </optgroup>
+                    <optgroup label="NON-ALCOHOLIC" selected>
+                        {% for non_alcoholic_ingredient in b %}
+                        <option> {{ non_alcoholic_ingredient }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectNonAlcoholicIngredient')">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectNonAlcoholicIngredient')">
+                    +
+                </button>
                 <p id="picked_selectNonAlcoholicIngredient"></p>
 
                 <select class="browser-default custom-select mySelect" id="selectFruitIngredient">
-                        <optgroup label="FRUIT" selected>
-                            {% for fruit_ingredient in c %}
-                                    <option> {{ fruit_ingredient }} </option>
-                            {% endfor %}
-                        </optgroup>
+                    <optgroup label="FRUIT" selected>
+                        {% for fruit_ingredient in c %}
+                        <option> {{ fruit_ingredient }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectFruitIngredient')">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectFruitIngredient')">+
+                </button>
                 <p id="picked_selectFruitIngredient"></p>
 
 
                 <select class="browser-default custom-select mySelect" id="selectOtherIngredient">
-                        <optgroup label="OTHER" selected>
-                            {% for other_ingredient in d %}
-                                    <option> {{ other_ingredient }} </option>
-                            {% endfor %}
-                        </optgroup>
+                    <optgroup label="OTHER" selected>
+                        {% for other_ingredient in d %}
+                        <option> {{ other_ingredient }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectOtherIngredient')">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectOtherIngredient')">+
+                </button>
                 <p id="picked_selectOtherIngredient"></p>
 
                 <select class="browser-default custom-select mySelect" id="selectGlassIngredient">
-                        <optgroup label="GLASS" selected>
-                            {% for glass_ingredient in e %}
-                                    <option> {{ glass_ingredient }} </option>
-                            {% endfor %}
-                        </optgroup>
+                    <optgroup label="GLASS" selected>
+                        {% for glass_ingredient in e %}
+                        <option> {{ glass_ingredient }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectGlassIngredient')">+</button>
+                <button type="button" class="btn btn-warning" onclick="addIngredient('selectGlassIngredient')">+
+                </button>
                 <p id="picked_selectGlassIngredient"></p>
-{% endfor %}
-                    <!-- Ingredients list will be generated here -->
-                    <!-- tu od inputa zaczac -->
+                {% endfor %}
+                <!-- Ingredients list will be generated here -->
+                <!-- tu od inputa zaczac -->
 
-                    <div id="IngredientList"></div>
+                <div id="IngredientList"></div>
 
 
+        </div>
 
-            </div>
+        <div class="col-md-3 buttonsPanel">
 
-            <div class="col-md-3 buttonsPanel">
-
-                    <button type="submit" class="btn myButton makeButton">MAKE</button>
-                </form>
-                <button type="button" class="btn myButton resetButton" onclick="resetIngredientList()">RESET</button>
-            </div>
+            <button type="submit" class="btn myButton makeButton">MAKE</button>
+            </form>
+            <button type="button" class="btn myButton resetButton" onclick="resetIngredientList()">RESET</button>
         </div>
     </div>
+</div>
 
 <!-- Break content -->
-    <div class="col-md-2 myPause"></div>
+<div class="col-md-2 myPause"></div>
 
 
 <!-- Right content -->
 <div class="col-md-4 myRight">
 
     <div class="aboutSection mySection roundedPanel">
-    <h6 class="text-white">Its an application for helping you make the best possible drink from
-    the ingredients you have!</h6>
-    <button type="button" class="btn btn-warning">Learn more</button>
-        </div>
+        <h6 class="text-white">Its an application for helping you make the best possible drink from
+            the ingredients you have!</h6>
+        <button type="button" class="btn btn-warning">Learn more</button>
+    </div>
 
     <div class="popularSection mySection roundedPanel">
-    <h3 class="text-white">Most Popular Drinks</h3>
-        </div>
+        <h3 class="text-white">Most Popular Drinks</h3>
+    </div>
 
 </div>
 {% endblock main-content %}
