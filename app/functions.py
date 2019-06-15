@@ -42,8 +42,6 @@ def prepare_ingredients_list(request):
 
     ingredient_list.pop(0)
 
-    print(ingredient_list)
-
     return ingredient_list
 
 
@@ -212,6 +210,5 @@ def get_deduced_ingredients(ingredient_list):
         output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[indexes[0]],
                       drink1=ser3[indexes[0] + 1], drink2_name=ser2[indexes[1]], drink2=ser3[indexes[1] + 1])
 
-    print(output)
     return output
 

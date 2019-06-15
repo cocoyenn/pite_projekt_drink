@@ -32,7 +32,11 @@ def make_drink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
     }
-    prepared_drinks = get_deduced_ingredients(context['ingredient_list'])
+
+    if len(context['ingredient_list']) == 0:
+        prepared_drinks = {}
+    else:
+        prepared_drinks = get_deduced_ingredients(context['ingredient_list'])
     
     return render(request, 'app/drink_ready.html', context, prepared_drinks)
 

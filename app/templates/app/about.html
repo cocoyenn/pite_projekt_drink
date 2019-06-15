@@ -1,9 +1,10 @@
 {% extends "app/base.html" %}
 {% block main-content %}
 <!-- Left content -->
+<div class="row roundedPanel mySection">
 <div class="aboutAll">
-    <h2 class="aboutParagraph">About Drink Advisor</h2>
-    <div class="aboutParagraph">App is responsible for finding the best drink from products which user has at his
+    <h2 class="aboutParagraph text-white">About Drink Advisor</h2>
+    <div class="aboutParagraph text-white">App is responsible for finding the best drink from products which user has at his
         disposal now. User has to opt
         for several ingredients from the app’s set. It is divided into three groups: alcohols, beverages and fruits.
         Moreover, he is able to prefer alcoholic or non-alcoholic drinks. After making a choice, machine learning
@@ -12,12 +13,14 @@
         For registered user is available to grade every recipe. He is able to create his own list of favourite recipes.
         He can also edit his profile by change his avatar or nickname.
     </div>
-    <div class="aboutParagraph">Drink Advisor is a Python App created with Django. It uses an SQLite database as a
+    <br />
+    <div class="aboutParagraph text-white">Drink Advisor is a Python App created with Django. It uses an SQLite database as a
         persistence layer. On the frontend side it uses standard Jinja templating for dynamic HTML rendering and
         Bootstrap styling components. Search engine consists of Machine Learning techniques. It uses Word2Vec
         technology, that is useful in creating model of words most connected with others, basing on their common context
         in chosen text.
     </div>
+</div>
 </div>
 
 {% endblock main-content %}
