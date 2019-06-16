@@ -9,24 +9,9 @@
     background: rgba(218, 172, 73, 0.31);
 }
 
-.myLeft {
-
-}
-
-.myRight {
-
-}
-
 .roundedPanel {
     border-radius: 5px;
     padding: 20px;
-}
-
-.ingredientsPanel {
-
-}
-
-.buttonsPanel {
 }
 
 .mySelect {
@@ -46,10 +31,6 @@
 
 .resetButton {
     background: rgb(232, 135, 8);
-}
-
-.myPause {
-
 }
 
 .myIngredient {
@@ -86,4 +67,8 @@
 
 .aboutParagraph {
     margin: 8px;
+}
+
+.textIngredient {
+    color: #1e3160;
 }

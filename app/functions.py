@@ -40,7 +40,8 @@ def prepare_ingredients_list(request):
     for elementId, ingredient in request.POST.items():
         ingredient_list.append(str(ingredient))
 
-    ingredient_list.pop(0)
+    if len(ingredient_list) != 0:
+        ingredient_list.pop(0)
 
     return ingredient_list
 
@@ -172,6 +173,7 @@ def find_in_vocab(ingredient_list):
         output.append('lemon-line_soda')
 
     return output
+
 
 def get_deduced_ingredients(ingredient_list):
     ingredients = find_in_vocab(ingredient_list)

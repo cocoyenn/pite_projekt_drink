@@ -31,14 +31,14 @@ def make_drink(request):
         'title': 'Drink maked!',
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
+        'prepared_drinks': [],
     }
 
-    if len(context['ingredient_list']) == 0:
-        prepared_drinks = {}
-    else:
-        prepared_drinks = get_deduced_ingredients(context['ingredient_list'])
-    
-    return render(request, 'app/drink_ready.html', context, prepared_drinks)
+    if len(context['ingredient_list']) != 0:
+        context['prepared_drinks'] = get_deduced_ingredients(context['ingredient_list'])
+
+    print(context['prepared_drinks'])
+    return render(request, 'app/drink_ready.html', context)
 
 
 def user_register(request):
