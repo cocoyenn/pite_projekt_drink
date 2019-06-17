@@ -171,7 +171,7 @@ def find_in_vocab(ingredient_list):
         output.append('vanilla_extract')
         
     if ('lemon-lime' in ingredients) and ('soda' in ingredients):
-        output.append('lemon-line_soda')
+        output.append('lemon-lime_soda')
     
     return output
 
@@ -179,6 +179,13 @@ def find_in_vocab(ingredient_list):
 def generate_drinks(ingredient_list):
     
     ingredients = find_in_vocab(ingredient_list)
+    
+    if not ingredients:
+        ingri = random.sample(['rum','vodka','gin','tequila','whiskey'],2)
+        drink = random.sample(['Rum Coca-cola','Vodka Coca-cola','Gin Tonic','Whiskey Coca-cola'],2)
+        
+        return dict(ingredient1=ingri[0], ingredient2=ingri[1], drink1_name='Our proposition 1',
+                    drink1=drink[0], drink2_name='Our proposition 2', drink2=drink[1])
     
     with open("ml_model/model", 'rb') as file:
         model = pickle.load(file)
@@ -208,10 +215,10 @@ def generate_drinks(ingredient_list):
     
     if len(indexes) == 1:
         output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[indexes[0]],
-                    drink1=ser3[indexes[0]+1], drink2_name='NaN', drink2='NaN')
+                    drink1=ser3[indexes[0]].title(), drink2_name='Cuba Libre', drink2='Rum Coca-cola Lime Ice')
     else:
         found_indx = random.sample(indexes, 2)
         output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[indexes[0]],
-                    drink1=ser3[indexes[0]+1], drink2_name=ser2[indexes[1]], drink2=ser3[indexes[1]+1])
+                    drink1=ser3[indexes[0]].title(), drink2_name=ser2[indexes[1]], drink2=ser3[indexes[1]].title())
     
     return output
