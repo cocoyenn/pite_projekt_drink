@@ -10,9 +10,9 @@ class UserProfileInfo(models.Model):
         return self.user.username
 
 class Drink(models.Model):
-    last_name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
 
 class DrinkRate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #TODO on_delete przemyśleć
-    drink = models.OneToOneField(Drink, on_delete=models.CASCADE)
+    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
     rate= models.IntegerField()
