@@ -32,24 +32,24 @@ class TestUrlsRouts(TestCase):
  
     def test_home_url_is_resolved(self):
         url = reverse('app-home')
-        self.assertEquals(resolve(url).route, "app/")
+        self.assertEquals(resolve(url).route, "")
     
     def test_about_url_is_resolved(self):
         url = reverse('app-about')
-        self.assertEquals(resolve(url).route, "app/about/")   
+        self.assertEquals(resolve(url).route, "about/")
 
     def test_user_login_url_is_resolved(self):
         url = reverse('app-login')
-        self.assertEquals(resolve(url).route, "app/login/")
+        self.assertEquals(resolve(url).route, "login/")
 
     def test_user_register_url_is_resolved(self):
         url = reverse('app-register')
-        self.assertEquals(resolve(url).route, "app/register/")
+        self.assertEquals(resolve(url).route, "register/")
 
     def test_user_logout_url_is_resolved(self):
         url = reverse('app-logout')
-        self.assertEquals(resolve(url).route, "app/logout") 
+        self.assertEquals(resolve(url).route, "logout")
 
     def test_make_drink_url_is_resolved(self):
         url = reverse('app-makeDrink')
-        self.assertEquals(resolve(url).route, "app/makeDrink/")
+        self.assertEquals(resolve(url).route, "make_drink/")

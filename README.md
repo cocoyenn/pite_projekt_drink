@@ -16,7 +16,8 @@ Project for Python In The Enterprise course
 6. localhost:8000/admin to admin panel
 
 --TEST
-1. If you want to run unit tests:
+
+1. If you want to run django tests:
 ```sh
 $ python manage.py test app
 ```

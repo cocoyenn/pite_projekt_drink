@@ -72,3 +72,25 @@ class ViewsTest(TestCase):
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 302)
+
+    def test_profile_site(self):
+        url = reverse("app-profile")
+        resp = self.client.get(url)
+
+        self.assertEqual(resp.status_code, 200)
+
+    def test_profile_edition_post_valid(self):
+        User.objects.create_user(username='Ala', password='lol')
+        self.client.login(username='Ala', password='lol')
+        url = reverse("app-profile_edition")
+        resp = self.client.post(url, data={"username": "Ala", "password": "lol"})
+
+        self.assertEqual(resp.status_code, 302)
+
+    def test_profile_edition_get(self):
+        User.objects.create_user(username='Ala', password='lol')
+        self.client.login(username='Ala', password='lol')
+        url = reverse("app-profile_edition")
+        resp = self.client.get(url)
+
+        self.assertEqual(resp.status_code, 200)
