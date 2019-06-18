@@ -48,6 +48,8 @@ def prepare_ingredients_list(request):
 
 def find_in_vocab(ingredient_list):
     
+    string      = ''
+    sset        = []
     output      = []
     ingredients = []
     for elem in ingredient_list:
@@ -62,116 +64,25 @@ def find_in_vocab(ingredient_list):
         if elem in ser:
             output.append(elem)
     
-    if ('creme' in ingredients) and ('de' in ingredients):
-        output.append('creme_de')
+    for i in range(0, len(ingredients)):
+        for j in range(i + 1, len(ingredients)):
+            string = ingredients[i] + '_' + ingredients[j]
+            sset.append(string)
+            string = ''
     
-    if ('grand' in ingredients) and ('marnier' in ingredients):
-        output.append('grand_marnier')
+    sset  = list(set(sset))
+    slist = ['creme_de','grand_marnier','chambord_raspberry','midori_melon','malibu_rum',
+            '151_proof','vanilla_ice-cream','dark_rum','jack_daniels','triple_sec',
+            'sweet_and','blue_curacao','sour_mix','kahlua_baileys','irish_cream','absolut_citron',
+            'peach_schnapps','ginger_ale','southern_comfort','maraschino_cherry','baileys_irish',
+            'sweet_vermouth','egg_white','heavy_cream','dry_vermouth','club_soda','apricot_brandy',
+            'sloe_gin','blended_whiskey','food_coloring','whipped_cream','red_wine','chocolate_syrop',
+            'powdered_sugar','cocoa_powder','vanilla_extract','lemon-lime_soda']
     
-    if ('chambord' in ingredients) and ('raspberry' in ingredients):
-        output.append('chambord_raspberry')
+    for elem in sset:
+        if elem in slist:
+            output.append(elem)
     
-    if ('midori' in ingredients) and ('melon' in ingredients):
-        output.append('midori_melon')
-    
-    if ('malibu' in ingredients) and ('rum' in ingredients):
-        output.append('malibu_rum')
-    
-    if ('151' in ingredients) and ('proof' in ingredients):
-        output.append('151_proof')
-    
-    if ('vanilla' in ingredients) and ('ice-cream' in ingredients):
-        output.append('vanilla_ice-cream')
-    
-    if ('dark' in ingredients) and ('rum' in ingredients):
-        output.append('dark_rum')
-    
-    if ('jack' in ingredients) and ('daniels' in ingredients):
-        output.append('jack_daniels')
-    
-    if ('triple' in ingredients) and ('sec' in ingredients):
-        output.append('triple_sec')
-    
-    if ('sweet' in ingredients) and ('and' in ingredients):
-        output.append('sweet_and')
-    
-    if ('blue' in ingredients) and ('curacao' in ingredients):
-        output.append('blue_curacao')
-    
-    if ('sour' in ingredients) and ('mix' in ingredients):
-        output.append('sour_mix')
-        
-    if ('kahlua' in ingredients) and ('baileys' in ingredients):
-        output.append('kahlua_baileys')
-        
-    if ('irish' in ingredients) and ('cream' in ingredients):
-        output.append('irish_cream')
-        
-    if ('absolut' in ingredients) and ('citron' in ingredients):
-        output.append('absolut_citron')
-    
-    if ('peach' in ingredients) and ('schnapps' in ingredients):
-        output.append('peach_schnapps')
-        
-    if ('ginger' in ingredients) and ('ale' in ingredients):
-        output.append('ginger_ale')
-    
-    if ('southern' in ingredients) and ('comfort' in ingredients):
-        output.append('southern_comfort')
-        
-    if ('maraschino' in ingredients) and ('cherry' in ingredients):
-        output.append('maraschino_cherry')
-        
-    if ('baileys' in ingredients) and ('irish' in ingredients):
-        output.append('baileys_irish')
-        
-    if ('sweet' in ingredients) and ('vermouth' in ingredients):
-        output.append('sweet_vermouth')
-        
-    if ('egg' in ingredients) and ('white' in ingredients):
-        output.append('egg_white')
-        
-    if ('heavy' in ingredients) and ('cream' in ingredients):
-        output.append('heavy_cream')
-        
-    if ('dry' in ingredients) and ('vermouth' in ingredients):
-        output.append('dry_vermouth')
-        
-    if ('club' in ingredients) and ('soda' in ingredients):
-        output.append('club_soda')
-        
-    if ('apricot' in ingredients) and ('brandy' in ingredients):
-        output.append('apricot_brandy')
-        
-    if ('sloe' in ingredients) and ('gin' in ingredients):
-        output.append('sloe_gin')
-        
-    if ('blended' in ingredients) and ('whiskey' in ingredients):
-        output.append('blended_whiskey')
-        
-    if ('food' in ingredients) and ('coloring' in ingredients):
-        output.append('food_coloring')
-        
-    if ('whipped' in ingredients) and ('cream' in ingredients):
-        output.append('whipped_cream')
-        
-    if ('red' in ingredients) and ('wine' in ingredients):
-        output.append('red_wine')
-        
-    if ('chocolate' in ingredients) and ('syrop' in ingredients):
-        output.append('chocolate_syrop')
-    
-    if ('powdered' in ingredients) and ('sugar' in ingredients):
-        output.append('powdered_sugar')
-        
-    if ('cocoa' in ingredients) and ('powder' in ingredients):
-        output.append('cocoa_powder')
-        
-    if ('vanilla' in ingredients) and ('extract' in ingredients):
-        output.append('vanilla_extract')
-        
-    if ('lemon-lime' in ingredients) and ('soda' in ingredients):
-        output.append('lemon-lime_soda')
     
     return output
 
@@ -214,11 +125,11 @@ def generate_drinks(ingredient_list):
     ser3 = pd.Series(data_file3['list of ingedients'])
     
     if len(indexes) == 1:
-        output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[indexes[0]],
+        output = dict(ingredient1=(results[0])[0].replace('_',' '), ingredient2=(results[1])[0].replace('_',' '), drink1_name=ser2[indexes[0]],
                     drink1=ser3[indexes[0]].title(), drink2_name='Cuba Libre', drink2='Rum Coca-cola Lime Ice')
     else:
         found_indx = random.sample(indexes, 2)
-        output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[found_indx[0]],
+        output = dict(ingredient1=(results[0])[0].replace('_',' '), ingredient2=(results[1])[0].replace('_',' '), drink1_name=ser2[found_indx[0]],
                     drink1=ser3[indexes[0]].title(), drink2_name=ser2[found_indx[1]], drink2=ser3[indexes[1]].title())
     
     return output
