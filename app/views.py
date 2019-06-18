@@ -5,14 +5,18 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from .table import DrinkRateTable
+from .models import DrinkRate
 from .functions import *
 
 
 def home(request):
+    table = DrinkRateTable(DrinkRate.objects.all())
     context = {
         'title': 'Home',
         'app_name': settings.APP_NAME,
-        'ingredients': get_ingredients_list()
+        'ingredients': get_ingredients_list(),
+        'table': table
     }
     return render(request, 'app/home.html', context)
 
@@ -104,11 +108,14 @@ def user_logout(request):
 
 
 def profile_site(request):
+    table = DrinkRateTable(DrinkRate.objects.all())
+
     context = {
        'settings': settings,
-        'title': 'Login failed try again!',
+        'title': 'Profile site',
         'app_name': settings.APP_NAME,
-        'info':"Login failed try again!"
+        'info':"Profile site",
+        'table': table        
     }
     return render(request, 'app/profile.html', context)
 
