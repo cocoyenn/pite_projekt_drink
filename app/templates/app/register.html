@@ -2,17 +2,18 @@
 
 {% block main-content %}
 <div class="container mySection roundedPanel">
-        <div class="">
+        <div class="textShadow">
           {% if registered %}
-            <h3 class="text-white">Thank you for registering!</h3>
+            <h2 class="text-white">Thank you for registering!</h2>
           {% else %}
-            <h3 class="text-white">Register Here</h3>
+            <h2 class="text-white shadowText">Register</h2>
+            <br />
     
     <form enctype="multipart/form-data" method="POST">
               {% csrf_token %}
               {{ user_form.as_p }}
               {{ profile_form.as_p }}
-              <input type="submit" class="btn btn-warning" name="" value="Register">
+              <input type="submit" class="btn btn-warning buttonShadow" name="" value="Register">
             </form>
             
           {% endif %}

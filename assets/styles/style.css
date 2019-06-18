@@ -2,16 +2,22 @@
     background: url("../images/background2.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100%;
 }
 
 .mySection {
-    background: rgba(218, 172, 73, 0.31);
+    background: rgba(0, 201, 218, 0.61);
+        -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 .roundedPanel {
     border-radius: 5px;
     padding: 20px;
+}
+
+.hMargin {
+    margin-bottom: 20px;
 }
 
 .mySelect {
@@ -25,12 +31,37 @@
     margin-bottom: 10px;
 }
 
+.buttonShadow {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+}
+
 .makeButton {
-    background: rgb(218, 200, 0);
+    background-color: #ffb500;
+    font-weight: bold;
+}
+
+.text-myOrange {
+    color: #ffb500;
 }
 
 .resetButton {
-    background: rgb(232, 135, 8);
+    background: rgb(232, 0, 110);
+    font-weight: bold;
+}
+
+.plusButton, .minusButton {
+    background-color: #ffb500;
+    border: none;
+  color: black;
+  padding: 4px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .myIngredient {
@@ -60,15 +91,25 @@
     margin-left: 20px;
 }
 
-.aboutAll {
-    background-color: rgba(240, 248, 255, 0.38);
-    padding: 15px;
-}
-
 .aboutParagraph {
     margin: 8px;
 }
 
 .textIngredient {
-    color: #1e3160;
+    color: #ffffff;
+}
+
+.shadowText {
+    text-shadow: 2px 2px #000000;
+}
+
+.drinkName {
+    font-style: italic;
+    font-weight: bold;
+    color: #ffb500;
+}
+
+.drinkIngredientsText {
+    font-style: italic;
+    font-weight: bold;
 }

@@ -4,9 +4,10 @@
 <!-- Left content -->
 
 <div class="col-md-6 myLeft">
-    <h5 class="text-white">Select your ingredients and compose your drink!</h5>
+
 
     <div class="row roundedPanel mySection">
+        <h5 class="text-white hMargin shadowText ">Select your ingredients and compose your drink!</h5>
 
         <div class="col-md-9 ingredientsPanel">
             <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
@@ -19,7 +20,7 @@
                         {% endfor %}
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectAlcoholicIngredient')">+
+                <button type="button" class="plusButton buttonShadow" onclick="addIngredient('selectAlcoholicIngredient')">+
                 </button>
                 <p id="picked_selectAlcoholicIngredient"></p>
 
@@ -31,7 +32,7 @@
                         {% endfor %}
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectNonAlcoholicIngredient')">
+                <button type="button" class="plusButton buttonShadow" onclick="addIngredient('selectNonAlcoholicIngredient')">
                     +
                 </button>
                 <p id="picked_selectNonAlcoholicIngredient"></p>
@@ -43,7 +44,7 @@
                         {% endfor %}
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectFruitIngredient')">+
+                <button type="button" class="plusButton buttonShadow" onclick="addIngredient('selectFruitIngredient')">+
                 </button>
                 <p id="picked_selectFruitIngredient"></p>
 
@@ -55,7 +56,7 @@
                         {% endfor %}
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectOtherIngredient')">+
+                <button type="button" class="plusButton buttonShadow" onclick="addIngredient('selectOtherIngredient')">+
                 </button>
                 <p id="picked_selectOtherIngredient"></p>
 
@@ -66,7 +67,7 @@
                         {% endfor %}
                     </optgroup>
                 </select>
-                <button type="button" class="btn btn-warning" onclick="addIngredient('selectGlassIngredient')">+
+                <button type="button" class="plusButton buttonShadow" onclick="addIngredient('selectGlassIngredient')">+
                 </button>
                 <p id="picked_selectGlassIngredient"></p>
                 {% endfor %}
@@ -80,9 +81,9 @@
 
         <div class="col-md-3 buttonsPanel">
 
-            <button type="submit" class="btn myButton makeButton">MAKE</button>
+            <button type="submit" class="btn myButton makeButton buttonShadow">MAKE</button>
             </form>
-            <button type="button" class="btn myButton resetButton" onclick="resetIngredientList()">RESET</button>
+            <button type="button" class="btn myButton resetButton buttonShadow" onclick="resetIngredientList()">RESET</button>
         </div>
     </div>
 </div>
@@ -97,11 +98,14 @@
     <div class="aboutSection mySection roundedPanel">
         <h6 class="text-white">Its an application for helping you make the best possible drink from
             the ingredients you have!</h6>
-        <a href="{% url 'app-about' %}"><button type="button" class="btn btn-warning">Learn more</button></a>
+        <br />
+        <a href="{% url 'app-about' %}"><button type="button" class="btn btn-warning buttonShadow">Learn more</button></a>
     </div>
 
     <div class="popularSection mySection roundedPanel">
-        <h3 class="text-white">Most Popular Drinks</h3>
+        <h4 class="text-white shadowText">
+            Most Popular Drinks
+        </h4>
     </div>
 
 </div>

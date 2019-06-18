@@ -4,44 +4,57 @@
 <!-- Left content -->
 
     <div class="col-md-6 myLeft">
-        <h5 class="text-white">Here's your drink!</h5>
 
         <div class="row roundedPanel mySection">
 
+            <h3 class="text-white hMargin shadowText">Here's your drink!</h3>
+
             <div class="col-md-9 ingredientsPanel">
 
+                <h4 class="textIngredient drinkName">
+                    {{ prepared_drinks.drink1_name }}
+                </h4>
+                <p class="drinkIngredientsText">
+
+                     {{ prepared_drinks.drink1 }}
+                </p>
+                <p class="text-white">
+                <h5 class="text-white">Rate:</h5>
+                    <span class="badge badge-danger">
+                        3.72/5
+                    </span></p>
+
                 <h5 class="text-white">Your ingredients: </h5>
-                <p class="textIngredient">
+                <p>
+
                     {% for i in ingredient_list %}
+                    <span class="badge badge-warning">
                         {{ i }},
+                        </span>
                     {% endfor %}
+
                 </p>
 
                 <h5 class="text-white">Matched: </h5>
                 <p>
-                    <li class="textIngredient"> {{ prepared_drinks.ingredient1 }} </li>
-                    <li class="textIngredient"> {{ prepared_drinks.ingredient2 }} </li>
+                <span class="badge badge-warning">
+                    {{ prepared_drinks.ingredient1 }}
+                    </span>
+                    <span class="badge badge-warning">
+                     {{ prepared_drinks.ingredient2 }}
+                        </span>
                 </p>
 
 
-
-                <h5 class="text-white">Advised Drink: </h5>
-                <h3 class="textIngredient">
-                    {{ prepared_drinks.drink1_name }}
-                </h3>
-                <p class="textIngredient">
-                     {{ prepared_drinks.drink1 }}
-                </p>
-                <p class="text-white">RATE: 3.72/5</p>
                 <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
 
             </div>
 
             <div class="col-md-3 buttonsPanel">
 
-                    <a href="{% url 'app-home' %}"><button type="button" class="btn myButton makeButton">NEXT DRINK</button></a>
+                    <a href="{% url 'app-home' %}"><button type="button" class="btn myButton makeButton buttonShadow">NEXT DRINK</button></a>
                 </form>
-                <button type="submit" class="btn myButton resetButton" onclick="resetIngredientList()">RATE THIS DRINK</button>
+                <button type="submit" class="btn myButton resetButton buttonShadow" onclick="resetIngredientList()">RATE</button>
             </div>
         </div>
     </div>
@@ -54,10 +67,10 @@
 <div class="col-md-4 myRight">
 
     <div class="aboutSection mySection roundedPanel">
-    <h2 class="text-white">Check also:</h2>
-        <h3 class="textIngredient">
-            {{ prepared_drinks.drink2_name }} </h3>
-                <p class="textIngredient">
+    <h3 class="text-white hMargin shadowText">Check also:</h3>
+        <h4 class="textIngredient drinkName">
+            {{ prepared_drinks.drink2_name }} </h4>
+                <p class="drinkIngredientsText">
             {{ prepared_drinks.drink2 }}
                 </p>
     </div>
