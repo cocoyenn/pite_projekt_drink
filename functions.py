@@ -64,9 +64,9 @@ def find_in_vocab(ingredient_list):
         if elem in ser:
             output.append(elem)
     
-    for i in range(0, len(ingredients)):
-        for j in range(i + 1, len(ingredients)):
-            string = ingredients[i] + '_' + ingredients[j]
+    for i in ingredients:
+        for j in ingredients:
+            string = i + '_' + j
             sset.append(string)
             string = ''
     
@@ -82,7 +82,6 @@ def find_in_vocab(ingredient_list):
     for elem in sset:
         if elem in slist:
             output.append(elem)
-    
     
     return output
 
