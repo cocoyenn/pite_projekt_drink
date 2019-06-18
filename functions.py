@@ -218,7 +218,7 @@ def generate_drinks(ingredient_list):
                     drink1=ser3[indexes[0]].title(), drink2_name='Cuba Libre', drink2='Rum Coca-cola Lime Ice')
     else:
         found_indx = random.sample(indexes, 2)
-        output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[indexes[0]],
-                    drink1=ser3[indexes[0]].title(), drink2_name=ser2[indexes[1]], drink2=ser3[indexes[1]].title())
+        output = dict(ingredient1=(results[0])[0], ingredient2=(results[1])[0], drink1_name=ser2[found_indx[0]],
+                    drink1=ser3[indexes[0]].title(), drink2_name=ser2[found_indx[1]], drink2=ser3[indexes[1]].title())
     
     return output
