@@ -8,6 +8,7 @@ from django.conf import settings
 from .table import DrinkRateTable
 from .models import DrinkRate
 from .functions import *
+from .functions import get_ingredients_list, prepare_ingredients_list, get_deduced_ingredients
 
 
 def home(request):
@@ -29,16 +30,20 @@ def about(request):
     return render(request, 'app/about.html', context)
 
 
-def makeDrink(request):
+def make_drink(request):
 
     context = {
         'title': 'Drink maked!',
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
+        'prepared_drinks': [],
     }
-    prepared_drinks = generate_drinks(context['ingredient_list'])
 
-    return render(request, 'app/drinkReady.html', context, prepared_drinks)
+    if len(context['ingredient_list']) != 0:
+        context['prepared_drinks'] = get_deduced_ingredients(context['ingredient_list'])
+
+    print(context['prepared_drinks'])
+    return render(request, 'app/drink_ready.html', context)
 
 
 def user_register(request):

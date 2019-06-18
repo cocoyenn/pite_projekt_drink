@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
-from app.views import home, about, user_login, user_register, user_logout, makeDrink
+from app.views import home, about, user_login, user_register, user_logout, make_drink
 
 class TestUrlsFunc(TestCase):
  
@@ -26,7 +26,7 @@ class TestUrlsFunc(TestCase):
 
     def test_make_drink_url_is_resolved(self):
         url = reverse('app-makeDrink')
-        self.assertEquals(resolve(url).func, makeDrink)
+        self.assertEquals(resolve(url).func, make_drink)
 
 class TestUrlsRouts(TestCase):
  

@@ -1,0 +1,81 @@
+{% extends "app/base.html" %}
+
+{% block main-content %}
+<!-- Left content -->
+
+    <div class="col-md-6 myLeft">
+
+        <div class="row roundedPanel mySection">
+
+            <h3 class="text-white hMargin shadowText">Here's your drink!</h3>
+
+            <div class="col-md-9 ingredientsPanel">
+
+                <h4 class="textIngredient drinkName">
+                    {{ prepared_drinks.drink1_name }}
+                </h4>
+                <p class="drinkIngredientsText">
+
+                     {{ prepared_drinks.drink1 }}
+                </p>
+                <p class="text-white">
+                <h5 class="text-white">Rate:</h5>
+                    <span class="badge badge-danger">
+                        3.72/5
+                    </span></p>
+
+                <h5 class="text-white">Your ingredients: </h5>
+                <p>
+
+                    {% for i in ingredient_list %}
+                    <span class="badge badge-warning">
+                        {{ i }},
+                        </span>
+                    {% endfor %}
+
+                </p>
+
+                <h5 class="text-white">Matched: </h5>
+                <p>
+                <span class="badge badge-warning">
+                    {{ prepared_drinks.ingredient1 }}
+                    </span>
+                    <span class="badge badge-warning">
+                     {{ prepared_drinks.ingredient2 }}
+                        </span>
+                </p>
+
+
+                <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
+
+            </div>
+
+            <div class="col-md-3 buttonsPanel">
+
+                    <a href="{% url 'app-home' %}"><button type="button" class="btn myButton makeButton buttonShadow">NEXT DRINK</button></a>
+                </form>
+                <button type="submit" class="btn myButton resetButton buttonShadow" onclick="resetIngredientList()">RATE</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Break content -->
+    <div class="col-md-2 myPause"></div>
+
+
+<!-- Right content -->
+<div class="col-md-4 myRight">
+
+    <div class="aboutSection mySection roundedPanel">
+    <h3 class="text-white hMargin shadowText">Check also:</h3>
+        <h4 class="textIngredient drinkName">
+            {{ prepared_drinks.drink2_name }} </h4>
+                <p class="drinkIngredientsText">
+            {{ prepared_drinks.drink2 }}
+                </p>
+    </div>
+
+
+</div>
+{% endblock main-content %}
+

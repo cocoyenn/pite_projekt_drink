@@ -5,3 +5,7 @@ Pillow
 dj-database-url 
 psycopg2
 django_tables2
+pandas
+nltk
+gensim
+
