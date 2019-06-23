@@ -12,7 +12,7 @@ from .functions import get_ingredients_list, prepare_ingredients_list, get_deduc
 
 
 def home(request):
-    table = DrinkRateTable(DrinkRate.objects.all())
+    table = DrinkRateTable(DrinkRate.objects.all().order_by('-rate'))
     context = {
         'title': 'Home',
         'app_name': settings.APP_NAME,
@@ -111,10 +111,9 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('app-home'))
 
-
+@login_required
 def profile_site(request):
-    table = DrinkRateTable(DrinkRate.objects.all())
-
+    table = DrinkRateTable(DrinkRate.objects.filter( user = request.user).order_by('-rate'))
     context = {
        'settings': settings,
         'title': 'Profile site',

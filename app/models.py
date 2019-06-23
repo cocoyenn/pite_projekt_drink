@@ -14,5 +14,10 @@ class Drink(models.Model):
 
 class DrinkRate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #TODO on_delete przemyśleć
-    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
-    rate= models.IntegerField()
+    drink_name = models.CharField(default="non",max_length=30)
+    rate = models.IntegerField(null=True)
+
+    @classmethod
+    def create(cls, user, drink_name, rate):
+        drink_rate = cls(user=user, drink_name = drink_name, rate=rate)
+        return drink_rate

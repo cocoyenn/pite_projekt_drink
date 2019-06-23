@@ -3,4 +3,4 @@ from .models import DrinkRate
 class DrinkRateTable(tables.Table):
     class Meta:
         model = DrinkRate
-
+        fields = ('rate', 'drink_name') 
