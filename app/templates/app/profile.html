@@ -7,18 +7,16 @@
         <div class="row roundedPanel mySection">
             {% if user.is_authenticated %}
                 <ul>
-                    <li>First name: {{  user.first_name }}</li>
-                    <li>Last name: {{  user.last_name }}</li>
-                    <li>Email: {{  user.email }}</li>
-                    <li>Login: {{  user.username }}</li>
+                    <p class="drinkName">First name: </p> {{  user.first_name }}
+                    <p class="drinkName">Last name: </p> {{  user.last_name }}
+                    <p class="drinkName">Email: </p> {{  user.email }}
+                    <p class="drinkName">Login:  </p>{{  user.username }}
                 </ul> 
                
                 
                 {% if user.userprofileinfo.profile_pic %}
                     {% load static %}
-                    <img src="{{user.userprofileinfo.profile_pic.url}}" alt=""  >
-                {% else %}
-                    <img src="{% static 'profile_pics/pic1.png' %}" alt=""  >
+                    <img class="user_image" src="{{user.userprofileinfo.profile_pic.url}}" alt=""  >
                 {% endif %}  
             {% endif %}  
         </div>
@@ -29,7 +27,9 @@
 
 
 <!-- Right content -->
-<div class="col-md-4 myRight">
+<div class="col-md-4 myRight mySection roundedPanel">
+        {% load django_tables2 %}
+        {% render_table table %}
 
 </div>
 {% endblock main-content %}

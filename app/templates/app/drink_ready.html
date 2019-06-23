@@ -11,7 +11,10 @@
 
             <div class="col-md-9 ingredientsPanel">
 
+                <form id="rateForm" method="POST" action="{% url 'app-addDrinkRate' %}">
+                {% csrf_token %}
                 <h4 class="textIngredient drinkName">
+                    <input class="inputDrink" type="hidden" name="drink_name" value="{{ prepared_drinks.drink1_name }}">
                     {{ prepared_drinks.drink1_name }}
                 </h4>
                 <p class="drinkIngredientsText">
@@ -21,7 +24,7 @@
                 <p class="text-white">
                 <h5 class="text-white">Rate:</h5>
                     <span class="badge badge-danger">
-                        3.72/5
+                        {{ rate }}
                     </span></p>
 
                 <h5 class="text-white">Your ingredients: </h5>
@@ -46,15 +49,24 @@
                 </p>
 
 
-                <form id="ingredientForm" method="POST" action="{% url 'app-makeDrink' %}">
+
 
             </div>
 
             <div class="col-md-3 buttonsPanel">
 
                     <a href="{% url 'app-home' %}"><button type="button" class="btn myButton makeButton buttonShadow">NEXT DRINK</button></a>
+                {% if user.is_authenticated %}
+                <button type="submit" class="btn myButton resetButton buttonShadow" onclick="drinkRated()">RATE</button>
+                <select class="browser-default custom-select mySelect" id="drink_rate" name="drink_rate">
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                </select>
+                {% endif %}
                 </form>
-                <button type="submit" class="btn myButton resetButton buttonShadow" onclick="resetIngredientList()">RATE</button>
             </div>
         </div>
     </div>

@@ -5,14 +5,19 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .functions import get_ingredients_list, prepare_ingredients_list, get_deduced_ingredients
+from .table import DrinkRateTable, MostPopularDrinksTable
+from .models import DrinkRate
+from .functions import *
+from .functions import get_ingredients_list, prepare_ingredients_list, get_deduced_ingredients, add_drink_rate, get_higest_rated_drinks, get_drink_rates_per_user
 
 
 def home(request):
+    table = get_higest_rated_drinks()
     context = {
         'title': 'Home',
         'app_name': settings.APP_NAME,
-        'ingredients': get_ingredients_list()
+        'ingredients': get_ingredients_list(),
+        'table': table
     }
     return render(request, 'app/home.html', context)
 
@@ -32,14 +37,32 @@ def make_drink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
         'prepared_drinks': [],
+        'rate': 'not rated',
     }
 
     if len(context['ingredient_list']) != 0:
         context['prepared_drinks'] = get_deduced_ingredients(context['ingredient_list'])
+        context['rate'] = get_drink_rate(context['prepared_drinks'].get("drink1_name", ""))
 
-    print(context['prepared_drinks'])
     return render(request, 'app/drink_ready.html', context)
 
+
+def add_rate(request):
+
+    user_name = request.user
+    drink_name = request.POST.get("drink_name", "")
+    drink_rate = int(request.POST.get("drink_rate", ""))
+
+    add_drink_rate(user_name,drink_name, drink_rate)
+
+    table = get_higest_rated_drinks()
+    context = {
+        'title': 'Home',
+        'app_name': settings.APP_NAME,
+        'ingredients': get_ingredients_list(),
+        'table': table
+    }
+    return render(request, 'app/home.html', context)
 
 def user_register(request):
     registered = False
@@ -106,13 +129,15 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('app-home'))
 
-
+@login_required
 def profile_site(request):
+    table = get_drink_rates_per_user(request.user)
     context = {
        'settings': settings,
-        'title': 'Login failed try again!',
+        'title': 'Profile site',
         'app_name': settings.APP_NAME,
-        'info':"Login failed try again!"
+        'info':"Profile site",
+        'table': table        
     }
     return render(request, 'app/profile.html', context)
 

@@ -113,3 +113,8 @@ box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
     font-style: italic;
     font-weight: bold;
 }
+
+.user_image {
+    margin-left: 50px;
+    max-width: 80%;
+}

@@ -51,3 +51,7 @@ function resetIngredientList() {
     ingredientList = document.getElementById('picked_selectGlassIngredient');
     ingredientList.innerHTML = "";
 }
+
+function drinkRated() {
+    alert('Drink rated!');
+}
