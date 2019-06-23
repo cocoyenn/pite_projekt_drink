@@ -4,7 +4,8 @@ from nltk import word_tokenize
 import csv
 import random
 import numpy as np
-
+from .table import DrinkRateTable
+from .models import DrinkRate
 
 def get_ingredients_list():
 
@@ -218,3 +219,15 @@ def get_deduced_ingredients(ingredient_list):
                       drink1=ser3[indexes[0]].title(), drink2_name=ser2[found_indx[1]], drink2=ser3[indexes[1]].title())
 
     return output
+
+def add_drink_rate(c_user, c_drink_name, c_rate):
+    check = DrinkRate.objects.all().filter(user = c_user, drink_name = c_drink_name, rate = c_rate).count()
+    if(check == 0):
+       drink_rate = DrinkRate.create(c_user, c_drink_name, c_rate)
+       drink_rate.save()
+        
+    
+
+def get_higest_rated_drinks():
+    #num_results = User.objects.filter(email = cleaned_info['username']).count()
+    pass
