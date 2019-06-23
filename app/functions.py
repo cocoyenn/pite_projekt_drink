@@ -4,8 +4,8 @@ from nltk import word_tokenize
 import csv
 import random
 import numpy as np
-from .table import DrinkRateTable
-from .models import DrinkRate
+from .table import DrinkRateTable, MostPopularDrinksTable
+from .models import DrinkRate, MostPopularDrinks
 
 def get_ingredients_list():
 
@@ -221,13 +221,24 @@ def get_deduced_ingredients(ingredient_list):
     return output
 
 def add_drink_rate(c_user, c_drink_name, c_rate):
-    check = DrinkRate.objects.all().filter(user = c_user, drink_name = c_drink_name, rate = c_rate).count()
-    if(check == 0):
-       drink_rate = DrinkRate.create(c_user, c_drink_name, c_rate)
-       drink_rate.save()
-        
-    
+    if DrinkRate.objects.all().filter(user = c_user, drink_name = c_drink_name, rate = c_rate).exists():
+        return None
+
+    drink_rate = DrinkRate.create(c_user, c_drink_name, c_rate)
+    drink_rate.save()
+
+    if MostPopularDrinks.objects.all().filter(drink_name = c_drink_name).exists():
+        drink_statictics = MostPopularDrinks.objects.get(drink_name = c_drink_name)
+        drink_statictics.update(c_rate)
+        drink_statictics.save()
+    else:
+        drink_statictics = MostPopularDrinks.create(c_drink_name, c_rate)
+        drink_statictics.save()  
 
 def get_higest_rated_drinks():
-    #num_results = User.objects.filter(email = cleaned_info['username']).count()
-    pass
+    table = MostPopularDrinksTable(MostPopularDrinks.objects.all().order_by('-rate_count','-rate_avarage',))
+    return table    
+
+def get_drink_rates_per_user(c_user):
+    table = DrinkRateTable(DrinkRate.objects.filter( user = c_user).order_by('-rate'))
+    return table

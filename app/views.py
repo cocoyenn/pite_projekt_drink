@@ -5,14 +5,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .table import DrinkRateTable
+from .table import DrinkRateTable, MostPopularDrinksTable
 from .models import DrinkRate
 from .functions import *
-from .functions import get_ingredients_list, prepare_ingredients_list, get_deduced_ingredients
+from .functions import get_ingredients_list, prepare_ingredients_list, get_deduced_ingredients, add_drink_rate, get_higest_rated_drinks, get_drink_rates_per_user
 
 
 def home(request):
-    table = DrinkRateTable(DrinkRate.objects.all().order_by('-rate'))
+    table = get_higest_rated_drinks()
     context = {
         'title': 'Home',
         'app_name': settings.APP_NAME,
@@ -113,7 +113,7 @@ def user_logout(request):
 
 @login_required
 def profile_site(request):
-    table = DrinkRateTable(DrinkRate.objects.filter( user = request.user).order_by('-rate'))
+    table = get_drink_rates_per_user(request.user)
     context = {
        'settings': settings,
         'title': 'Profile site',
