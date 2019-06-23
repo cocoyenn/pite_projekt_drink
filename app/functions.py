@@ -220,6 +220,7 @@ def get_deduced_ingredients(ingredient_list):
 
     return output
 
+
 def add_drink_rate(c_user, c_drink_name, c_rate):
     if DrinkRate.objects.all().filter(user = c_user, drink_name = c_drink_name, rate = c_rate).exists():
         return None
@@ -235,10 +236,20 @@ def add_drink_rate(c_user, c_drink_name, c_rate):
         drink_statictics = MostPopularDrinks.create(c_drink_name, c_rate)
         drink_statictics.save()  
 
+
 def get_higest_rated_drinks():
     table = MostPopularDrinksTable(MostPopularDrinks.objects.all().order_by('-rate_count','-rate_avarage',))
     return table    
 
+
 def get_drink_rates_per_user(c_user):
     table = DrinkRateTable(DrinkRate.objects.filter( user = c_user).order_by('-rate'))
     return table
+
+
+def get_drink_rate(c_drink_name):
+    if MostPopularDrinks.objects.all().filter(drink_name = c_drink_name).exists():
+        return MostPopularDrinks.objects.get(drink_name = c_drink_name).
+    else:
+        return 'not rated'
+

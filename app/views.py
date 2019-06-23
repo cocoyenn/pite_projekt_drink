@@ -37,14 +37,32 @@ def make_drink(request):
         'app_name': settings.APP_NAME,
         'ingredient_list': prepare_ingredients_list(request),
         'prepared_drinks': [],
+        'rate': 'not rated',
     }
 
     if len(context['ingredient_list']) != 0:
         context['prepared_drinks'] = get_deduced_ingredients(context['ingredient_list'])
+        context['rate'] = get_drink_rate(context['prepared_drinks'].get("drink1_name", ""))
 
-    print(context['prepared_drinks'])
     return render(request, 'app/drink_ready.html', context)
 
+
+def add_rate(request):
+
+    user_name = request.user
+    drink_name = request.POST.get("drink_name", "")
+    drink_rate = int(request.POST.get("drink_rate", ""))
+
+    add_drink_rate(user_name,drink_name, drink_rate)
+
+    table = get_higest_rated_drinks()
+    context = {
+        'title': 'Home',
+        'app_name': settings.APP_NAME,
+        'ingredients': get_ingredients_list(),
+        'table': table
+    }
+    return render(request, 'app/home.html', context)
 
 def user_register(request):
     registered = False

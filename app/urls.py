@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from . import functions
 
 urlpatterns = [
     path('', views.home, name='app-home'),
@@ -10,4 +11,5 @@ urlpatterns = [
     path('make_drink/', views.make_drink, name='app-makeDrink'),
     path('profile/', views.profile_site, name='app-profile'),
     path('profile_edition/', views.profile_edition, name='app-profile_edition'),
+    path('add_rate/', views.add_rate, name='app-addDrinkRate'),
 ]
