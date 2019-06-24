@@ -159,7 +159,7 @@ def get_drink_rates_per_user(c_user):
 
 def get_drink_rate(c_drink_name):
     if MostPopularDrinks.objects.all().filter(drink_name = c_drink_name).exists():
-        return MostPopularDrinks.objects.get(drink_name = c_drink_name)
+        return MostPopularDrinks.objects.get(drink_name = c_drink_name).rate_avarage
     else:
         return 'not rated'
 
